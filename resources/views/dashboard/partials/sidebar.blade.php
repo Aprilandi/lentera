@@ -6,7 +6,16 @@
                 <img src="/admin/img/admin-avatar.png" width="45px" />
             </div>
             <div class="admin-info">
-                <div class="font-strong">James Brown</div><small>Administrator</small>
+                @auth
+                    <div class="font-strong">{{ Str::limit(auth()->user()->name, 13, '.') }}</div>
+                    <?php if(auth()->user()->role == "admin") { ?>
+                    <small>Administrator</small>
+                    <?php } else if(auth()->user()->role == "guru") { ?>
+                    <small>Guru</small>
+                    <?php } else if(auth()->user()->role == "siswa") { ?>
+                    <small>Siswa</small>
+                    <?php } ?>
+                @endauth
             </div>
         </div>
         <ul class="side-menu metismenu">
