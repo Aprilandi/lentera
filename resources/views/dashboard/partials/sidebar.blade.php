@@ -7,13 +7,13 @@
             </div>
             <div class="admin-info">
                 @auth
-                    <div class="font-strong">{{ Str::limit(auth()->user()->name, 13, '.') }}</div>
-                    <?php if(auth()->user()->role == "admin") { ?>
+                    <?php if(auth()->user()->id_role == "1") { ?>
+                    <div class="font-strong">Lentera</div>
+                    <?php } ?>
+                    <?php if(auth()->user()->id_role == "1") { ?>
                     <small>Administrator</small>
-                    <?php } else if(auth()->user()->role == "guru") { ?>
+                    <?php } else if(auth()->user()->id_role == "2") { ?>
                     <small>Guru</small>
-                    <?php } else if(auth()->user()->role == "siswa") { ?>
-                    <small>Siswa</small>
                     <?php } ?>
                 @endauth
             </div>
