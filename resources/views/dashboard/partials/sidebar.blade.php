@@ -6,7 +6,16 @@
                 <img src="/admin/img/admin-avatar.png" width="45px" />
             </div>
             <div class="admin-info">
-                <div class="font-strong">James Brown</div><small>Administrator</small>
+                @auth
+                    <?php if(auth()->user()->id_role == "1") { ?>
+                    <div class="font-strong">Lentera</div>
+                    <?php } ?>
+                    <?php if(auth()->user()->id_role == "1") { ?>
+                    <small>Administrator</small>
+                    <?php } else if(auth()->user()->id_role == "2") { ?>
+                    <small>Guru</small>
+                    <?php } ?>
+                @endauth
             </div>
         </div>
         <ul class="side-menu metismenu">

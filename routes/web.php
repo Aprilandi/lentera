@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\GurusesController;
+use App\Http\Controllers\SiswasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,3 +34,18 @@ Route::get('/dashboard', function () {
         'page' => 'Dashboard'
     ]);
 })->middleware('auth');
+
+Route::middleware('auth')->group(function () {
+    Route::middleware('admin')->group(function () {
+        // Route::resource('/akun', UserController::class);
+        // Route::resource('/role', RolesController::class);
+        Route::resource('/guru', GurusesController::class);
+        // Route::resource('/siswa', SiswasController::class);
+        // Route::resource('/pekerjaan', PekerjaansController::class);
+        // Route::resource('/riwayat', RiwayatsController::class);
+    });
+    Route::middleware('guru')->group(function () {
+        // Route::resource('/pekerjaan', PekerjaansController::class);
+        // Route::resource('/riwayat', RiwayatsController::class);
+    });
+});
