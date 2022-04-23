@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Siswas;
 use Illuminate\Http\Request;
 
 class SiswasController extends Controller
@@ -14,6 +15,8 @@ class SiswasController extends Controller
     public function index()
     {
         //
+        $siswa = Siswas::get();
+        return view('dashboard.siswa.index', ['siswa' => $siswa])->with('active', 'active');
     }
 
     /**
@@ -24,6 +27,7 @@ class SiswasController extends Controller
     public function create()
     {
         //
+        return view('dashboard.siswa.create');
     }
 
     /**

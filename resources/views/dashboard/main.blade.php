@@ -8,7 +8,8 @@
     <title>Lentera Fajar Indonesia</title>
     <!-- GLOBAL MAINLY STYLES-->
     <link href="/admin/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="/admin/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    {{-- <link href="/admin/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" /> --}}
+    <script src="https://kit.fontawesome.com/2b329cdf00.js" crossorigin="anonymous"></script>
     <link href="/admin/vendors/themify-icons/css/themify-icons.css" rel="stylesheet" />
     <!-- PLUGINS STYLES-->
     <link href="/admin/vendors/jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" />

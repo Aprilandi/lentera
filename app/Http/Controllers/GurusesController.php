@@ -16,7 +16,7 @@ class GurusesController extends Controller
     {
         //
         $guru = Gurus::get();
-        return view('', ['guru' => $guru])->with('active', 'active');
+        return view('dashboard.guru.index', ['guru' => $guru])->with('active', 'active');
     }
 
     /**
@@ -27,6 +27,7 @@ class GurusesController extends Controller
     public function create()
     {
         //
+        return view('dashboard.guru.create');
     }
 
     /**

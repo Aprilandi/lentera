@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
         // Route::resource('/akun', UserController::class);
         // Route::resource('/role', RolesController::class);
         Route::resource('/guru', GurusesController::class);
-        // Route::resource('/siswa', SiswasController::class);
+        Route::resource('/siswa', SiswasController::class);
         // Route::resource('/pekerjaan', PekerjaansController::class);
         // Route::resource('/riwayat', RiwayatsController::class);
     });

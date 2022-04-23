@@ -20,12 +20,10 @@ class cekAdmin
     {
         $id = Auth::user()->id_role;
         $role = Roles::find($id);
-        foreach ($role as $row) {
-            if ($row->nama_role == "admin") {
-                return $next($request);
-            } else {
-                return redirect()->route('dashboard');
-            }
+        if ($role->role_name == "admin") {
+            return $next($request);
+        } else {
+            return redirect()->route('dashboard');
         }
     }
 }
