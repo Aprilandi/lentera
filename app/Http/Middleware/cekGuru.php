@@ -20,10 +20,10 @@ class cekGuru
     {
         $id = Auth::user()->id_role;
         $role = Roles::find($id);
-        if ($role->nama_role == "guru") {
+        if ($role->role_name == "guru") {
             return $next($request);
         } else {
-            return redirect()->route('dashboard');
+            return redirect('/dashboard');
         }
     }
 }

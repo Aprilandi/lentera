@@ -23,7 +23,7 @@ class cekAdmin
         if ($role->role_name == "admin") {
             return $next($request);
         } else {
-            return redirect()->route('dashboard');
+            return redirect('/dashboard');
         }
     }
 }

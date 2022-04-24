@@ -30,5 +30,11 @@ class DatabaseSeeder extends Seeder
             'username' => 'lentera',
             'password' => bcrypt('password')
         ]);
+
+        User::create([
+            'id_role' => '2',
+            'username' => 'guru',
+            'password' => bcrypt('password')
+        ]);
     }
 }
