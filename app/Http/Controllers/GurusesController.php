@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Gurus;
+use Illuminate\Support\Facades\File;
 
 class GurusesController extends Controller
 {
@@ -38,8 +39,30 @@ class GurusesController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        return redirect()->route('guru.index')->with('insert', 'Data Berhasil Ditambahkan');
+        $data = [
+            'nutpk' => $request->nutpk,
+            'nama_guru' => $request->nama_guru,
+            'alamat_guru' => $request->alamat_guru,
+            'tlp_guru' => $request->tlp_guru,
+            'ttl_guru' => $request->ttl_guru,
+            'no_ktp_guru' => $request->no_ktp_guru,
+            'no_kk_guru' => $request->no_kk_guru,
+            'nama_ibu_guru' => $request->nama_ibu_guru,
+            'pen_akhir_guru' => $request->pen_akhir_guru,
+            'jabatan_guru' => $request->jabatan_guru,
+            'email_guru' => $request->email_guru,
+            'status_aktif_guru' => 1,
+        ];
+
+        if ($request->file('foto_guru')) {
+            $image = $request->file('foto_guru');
+            $imageName = $image->getClientOriginalName();
+            $image->move(public_path('/foto-guru'), $imageName);
+            $data['foto_guru'] = $imageName;
+        }
+
+        Gurus::create($data);
+        return redirect('/guru')->with('insert', 'Data Berhasil Ditambahkan');
     }
 
     /**
@@ -48,9 +71,11 @@ class GurusesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($nama_guru)
     {
         //
+        $guru = Gurus::where('nama_guru', $nama_guru)->firstOrFail();
+        return view('dashboard.guru.show', compact('guru'));
     }
 
     /**
@@ -59,9 +84,11 @@ class GurusesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($nama_guru)
     {
         //
+        $guru = Gurus::where('nama_guru', $nama_guru)->firstOrFail();
+        return view('dashboard.guru.edit', compact('guru'));
     }
 
     /**
@@ -74,7 +101,17 @@ class GurusesController extends Controller
     public function update(Request $request, $id)
     {
         //
-        return redirect()->route('guru.index')->with('update', 'Data Berhasil Dirubah');
+        $data = $request->except(['_method', '_token']);
+
+        if ($request->hasFile('foto_guru')) {
+            $image = $request->file('foto_guru');
+            $imageName = $image->getClientOriginalName();
+            $image->move(public_path('/foto-guru'), $imageName);
+            $data['foto_guru'] = "$imageName";
+        }
+
+        Gurus::where('id_guru', $id)->update($data);
+        return redirect('/guru')->with('update', 'Data Berhasil Dirubah');
     }
 
     /**
@@ -83,9 +120,13 @@ class GurusesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Gurus $guru)
     {
         //
-        return redirect()->route('guru.index')->with('delete', 'Data Berhasil Dihapus');
+        if ($guru->foto_guru) {
+            File::delete(public_path('/foto-guru/' . $guru->foto_guru));
+        }
+        Gurus::destroy($guru->id_guru);
+        return redirect('/guru')->with('delete', 'Data Berhasil Dihapus');
     }
 }

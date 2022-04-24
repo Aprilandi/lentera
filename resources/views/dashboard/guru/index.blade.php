@@ -22,43 +22,43 @@
                             Guru</a>
                     </div>
                 </div>
-                <table class="table table-bordered no-margin table-invoice">
+                <table class="table table-bordered no-margin">
                     <thead>
                         <tr>
-                            <th>Item Description</th>
-                            <th>Quantity</th>
-                            <th>Unit Price</th>
-                            <th class="text-right">Total</th>
+                            <th class="text-center">No</th>
+                            <th class="text-center">Nama</th>
+                            <th class="text-center">NUTPK</th>
+                            <th class="text-center">Jabatan</th>
+                            <th class="text-center">Telepon</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <div><strong>Flat Design</strong></div><small>Lorem Ipsum is simply dummy text of the
-                                    printing and typesetting industry.</small>
-                            </td>
-                            <td>2</td>
-                            <td>$220.00</td>
-                            <td>$440.00</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div><strong>Bootstrap theme</strong></div><small>Lorem Ipsum is simply dummy text of the
-                                    printing and typesetting industry.</small>
-                            </td>
-                            <td>1</td>
-                            <td>$500.00</td>
-                            <td>$500.00</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div><strong>Invoice Design</strong></div><small>Lorem Ipsum is simply dummy text of the
-                                    printing and typesetting industry.</small>
-                            </td>
-                            <td>3</td>
-                            <td>$300.00</td>
-                            <td>$900.00</td>
-                        </tr>
+                        <?php $no = 1; ?>
+                        @foreach ($guru as $g)
+                            <tr>
+                                <td class="text-center">{{ $no++ }}.</td>
+                                <td class="text-center">{{ $g->nama_guru }}</td>
+                                <td class="text-center">{{ $g->nutpk }}</td>
+                                <td class="text-center">{{ $g->jabatan_guru }}</td>
+                                <td class="text-center">{{ $g->tlp_guru }}</td>
+                                <?php if($g->status_aktif_guru == 1) { ?>
+                                <td class="text-center"><a href="" type="button" class="btn btn-success">Aktif</a></td>
+                                <?php } ?>
+                                <td class="text-center">
+                                    <a href="/guru/{{ $g->nama_guru }}" type="button" class="btn btn-primary">Detail</a>
+                                    <a href="/guru/{{ $g->nama_guru }}/edit" type="button"
+                                        class="btn btn-warning">Edit</a>
+                                    <form action="/guru/{{ $g->id_guru }}" method="POST" class="d-inline">
+                                        @method('delete')
+                                        @csrf
+                                        <button class="btn btn-danger"
+                                            onclick="return confirm('Anda yakin ingin menghapus data ini?')">Hapus</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
