@@ -62,7 +62,7 @@ class GurusesController extends Controller
         }
 
         Gurus::create($data);
-        return redirect('/guru')->with('insert', 'Data Berhasil Ditambahkan');
+        return redirect('/guru')->with('success', 'Data Berhasil Ditambahkan');
     }
 
     /**
@@ -111,7 +111,7 @@ class GurusesController extends Controller
         }
 
         Gurus::where('id_guru', $id)->update($data);
-        return redirect('/guru')->with('update', 'Data Berhasil Dirubah');
+        return redirect('/guru')->with('success', 'Data Berhasil Dirubah');
     }
 
     /**
@@ -127,6 +127,6 @@ class GurusesController extends Controller
             File::delete(public_path('/foto-guru/' . $guru->foto_guru));
         }
         Gurus::destroy($guru->id_guru);
-        return redirect('/guru')->with('delete', 'Data Berhasil Dihapus');
+        return redirect('/guru')->with('success', 'Data Berhasil Dihapus');
     }
 }

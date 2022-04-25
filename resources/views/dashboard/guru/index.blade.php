@@ -22,6 +22,12 @@
                             Guru</a>
                     </div>
                 </div>
+                <div class="mb-3">
+                    @if (session()->has('success'))
+                        <div class="alert alert-success alert-bordered"><button class="close" data-dismiss="alert"
+                                aria-label="Close">×</button><strong>Sukses!</strong> {{ session('success') }}</div>
+                    @endif
+                </div>
                 <table class="table table-bordered no-margin">
                     <thead>
                         <tr>

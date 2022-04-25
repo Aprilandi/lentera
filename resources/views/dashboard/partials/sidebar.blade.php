@@ -7,14 +7,11 @@
             </div>
             <div class="admin-info">
                 @auth
-                    <?php if(auth()->user()->id_role == "1") { ?>
-                    <div class="font-strong">Lentera</div>
-                    <?php } ?>
-                    <?php if(auth()->user()->id_role == "1") { ?>
-                    <small>Administrator</small>
-                    <?php } else if(auth()->user()->id_role == "2") { ?>
-                    <small>Guru</small>
-                    <?php } ?>
+                    @if (auth()->user()->id_role == '1')
+                        <div class="font-strong">Lentera</div><small>Administrator</small>
+                    @else
+                        <small>Guru</small>
+                    @endif
                 @endauth
             </div>
         </div>
@@ -25,19 +22,21 @@
                     <span class="nav-label">Dashboard</span>
                 </a>
             </li>
-            <li class="heading">MENU</li>
-            <li>
-                <a class="{{ Request::is('guru') ? 'active' : '' }}" href="/guru"><i
-                        class="sidebar-item-icon fa fa-user-graduate"></i>
-                    <span class="nav-label">Guru</span>
-                </a>
-            </li>
-            <li>
-                <a class="{{ Request::is('siswa') ? 'active' : '' }}" href="/siswa"><i
-                        class="sidebar-item-icon fa fa-users"></i>
-                    <span class="nav-label">Siswa</span>
-                </a>
-            </li>
+            @if (auth()->user()->id_role == '1')
+                <li class="heading">MENU</li>
+                <li>
+                    <a class="{{ Request::is('guru') ? 'active' : '' }}" href="/guru"><i
+                            class="sidebar-item-icon fa fa-user-graduate"></i>
+                        <span class="nav-label">Guru</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="{{ Request::is('siswa') ? 'active' : '' }}" href="/siswa"><i
+                            class="sidebar-item-icon fa fa-users"></i>
+                        <span class="nav-label">Siswa</span>
+                    </a>
+                </li>
+            @endif
         </ul>
     </div>
 </nav>

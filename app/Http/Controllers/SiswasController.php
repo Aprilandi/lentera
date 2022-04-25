@@ -63,7 +63,7 @@ class SiswasController extends Controller
         }
 
         Siswas::create($data);
-        return redirect('/siswa')->with('insert', 'Data Berhasil Ditambahkan');
+        return redirect('/siswa')->with('success', 'Data Berhasil Ditambahkan');
     }
 
     /**
@@ -112,7 +112,7 @@ class SiswasController extends Controller
         }
 
         Siswas::where('id_siswa', $id)->update($data);
-        return redirect('/siswa')->with('update', 'Data Berhasil Dirubah');
+        return redirect('/siswa')->with('success', 'Data Berhasil Dirubah');
     }
 
     /**
@@ -128,6 +128,6 @@ class SiswasController extends Controller
             File::delete(public_path('/foto-siswa/' . $siswa->foto_siswa));
         }
         Siswas::destroy($siswa->id_siswa);
-        return redirect('/siswa')->with('delete', 'Data Berhasil Dihapus');
+        return redirect('/siswa')->with('success', 'Data Berhasil Dihapus');
     }
 }
