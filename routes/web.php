@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin.login.index', ['title' => 'Halaman Login']);
 });
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');

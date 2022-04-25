@@ -23,7 +23,7 @@
         @yield('container')
     </div>
     <!-- BEGIN THEME CONFIG PANEL-->
-    <div class="theme-config">
+    {{-- <div class="theme-config">
         <div class="theme-config-toggle"><i class="fa fa-cog theme-config-show"></i><i
                 class="ti-close theme-config-close"></i>
         </div>
@@ -51,7 +51,7 @@
                     <span class="input-span"></span>Boxed</label>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- END THEME CONFIG PANEL-->
     <!-- BEGIN PAGA BACKDROPS-->
     <div class="sidenav-backdrop backdrop"></div>

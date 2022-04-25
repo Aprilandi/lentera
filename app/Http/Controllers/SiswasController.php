@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Siswas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class SiswasController extends Controller
 {
@@ -38,7 +39,31 @@ class SiswasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = [
+            'no_induk_siswa' => $request->no_induk_siswa,
+            'nama_siswa' => $request->nama_siswa,
+            'alamat_siswa' => $request->alamat_siswa,
+            'tlp_siswa' => $request->tlp_siswa,
+            'ttl_siswa' => $request->ttl_siswa,
+            'no_ktp_siswa' => $request->no_ktp_siswa,
+            'no_kk_siswa' => $request->no_kk_siswa,
+            'nama_ayah_siswa' => $request->nama_ayah_siswa,
+            'pekerjaan_ayah' => $request->pekerjaan_ayah,
+            'nama_ibu_siswa' => $request->nama_ibu_siswa,
+            'pekerjaan_ibu' => $request->pekerjaan_ibu,
+            'golongan_siswa' => $request->golongan_siswa,
+            'status_aktif_siswa' => 1,
+        ];
+
+        if ($request->file('foto_siswa')) {
+            $image = $request->file('foto_siswa');
+            $imageName = $image->getClientOriginalName();
+            $image->move(public_path('/foto-siswa'), $imageName);
+            $data['foto_siswa'] = $imageName;
+        }
+
+        Siswas::create($data);
+        return redirect('/siswa')->with('insert', 'Data Berhasil Ditambahkan');
     }
 
     /**
@@ -47,9 +72,11 @@ class SiswasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($nama_siswa)
     {
         //
+        $siswa = Siswas::where('nama_siswa', $nama_siswa)->firstOrFail();
+        return view('dashboard.siswa.show', compact('siswa'));
     }
 
     /**
@@ -58,9 +85,11 @@ class SiswasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($nama_siswa)
     {
         //
+        $siswa = Siswas::where('nama_siswa', $nama_siswa)->firstOrFail();
+        return view('dashboard.siswa.edit', compact('siswa'));
     }
 
     /**
@@ -73,6 +102,17 @@ class SiswasController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $data = $request->except(['_method', '_token']);
+
+        if ($request->hasFile('foto_siswa')) {
+            $image = $request->file('foto_siswa');
+            $imageName = $image->getClientOriginalName();
+            $image->move(public_path('/foto-siswa'), $imageName);
+            $data['foto_siswa'] = "$imageName";
+        }
+
+        Siswas::where('id_siswa', $id)->update($data);
+        return redirect('/siswa')->with('update', 'Data Berhasil Dirubah');
     }
 
     /**
@@ -81,8 +121,13 @@ class SiswasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Siswas $siswa)
     {
         //
+        if ($siswa->foto_siswa) {
+            File::delete(public_path('/foto-siswa/' . $siswa->foto_siswa));
+        }
+        Siswas::destroy($siswa->id_siswa);
+        return redirect('/siswa')->with('delete', 'Data Berhasil Dihapus');
     }
 }
