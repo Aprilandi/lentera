@@ -25,8 +25,19 @@ class LoginController extends Controller
             $request->session()->regenerate();
             return redirect()->intended('/dashboard');
         }
+        // if (Auth::attempt([$this->username() => $request->email, 'password' => $request->password])) {
+        //     $request->session()->regenerate();
+        //     return redirect()->intended('/dashboard');
+        // }
 
         return back()->with('loginError', 'Login failed!');
+    }
+
+    public function username(){
+        $login = request()->input('username');
+        $field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'nutpk';
+        request()->merge([$field => $login]);
+        return $field;
     }
 
     public function logout(Request $request)

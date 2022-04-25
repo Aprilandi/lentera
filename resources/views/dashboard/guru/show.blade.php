@@ -19,7 +19,8 @@
                     <div class="ibox">
                         <div class="ibox-body text-center">
                             <div class="m-t-20">
-                                <img class="img-circle" src="/admin/img/users/u3.jpg" />
+                                <img class="img" src="{{ asset('/foto-guru/' . $guru->foto_guru) }}"
+                                    style="width: 100%;" />
                             </div>
                             <h5 class="font-strong m-b-10 m-t-10">{{ $guru->nama_guru }}</h5>
                             <div class="m-b-20 text-muted">{{ $guru->jabatan_guru }}</div>

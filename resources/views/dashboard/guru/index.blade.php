@@ -28,14 +28,20 @@
                                 aria-label="Close">×</button><strong>Sukses!</strong> {{ session('success') }}</div>
                     @endif
                 </div>
-                <table class="table table-bordered no-margin">
+                <table class="table table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
                     <thead>
                         <tr>
-                            <th class="text-center">No</th>
-                            <th class="text-center">Nama</th>
-                            <th class="text-center">NUTPK</th>
-                            <th class="text-center">Jabatan</th>
-                            <th class="text-center">Telepon</th>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Alamat</th>
+                            <th>Telepon</th>
+                            <th>Tempat, Tanggal Lahir</th>
+                            <th>No. KTP</th>
+                            <th>No. KK</th>
+                            <th>Nama Ibu Kandung</th>
+                            <th>Pendidikan Terakhir</th>
+                            <th>Jabatan</th>
+                            <th>Email</th>
                             <th class="text-center">Status</th>
                             <th class="text-center">Aksi</th>
                         </tr>
@@ -44,11 +50,17 @@
                         <?php $no = 1; ?>
                         @foreach ($guru as $g)
                             <tr>
-                                <td class="text-center">{{ $no++ }}.</td>
-                                <td class="text-center">{{ $g->nama_guru }}</td>
-                                <td class="text-center">{{ $g->nutpk }}</td>
-                                <td class="text-center">{{ $g->jabatan_guru }}</td>
-                                <td class="text-center">{{ $g->tlp_guru }}</td>
+                                <td>{{ $no++ }}.</td>
+                                <td>{{ $g->nama_guru }}</td>
+                                <td>{{ $g->alamat_guru }}</td>
+                                <td>{{ $g->tlp_guru }}</td>
+                                <td>{{ $g->ttl_guru }}</td>
+                                <td>{{ $g->no_ktp_guru }}</td>
+                                <td>{{ $g->no_kk_guru }}</td>
+                                <td>{{ $g->nama_ibu_guru }}</td>
+                                <td>{{ $g->pen_akhir_guru }}</td>
+                                <td>{{ $g->jabatan_guru }}</td>
+                                <td>{{ $g->email_guru }}</td>
                                 <?php if($g->status_aktif_guru == 1) { ?>
                                 <td class="text-center"><a href="" type="button" class="btn btn-success">Aktif</a></td>
                                 <?php } ?>

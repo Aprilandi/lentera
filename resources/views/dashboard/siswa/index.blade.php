@@ -31,11 +31,11 @@
                 <table class="table table-bordered no-margin">
                     <thead>
                         <tr>
-                            <th class="text-center">No</th>
-                            <th class="text-center">Nama</th>
-                            <th class="text-center">Nomor Induk</th>
-                            <th class="text-center">Golongan</th>
-                            <th class="text-center">Telepon</th>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Nomor Induk</th>
+                            <th>Golongan</th>
+                            <th>Telepon</th>
                             <th class="text-center">Status</th>
                             <th class="text-center">Aksi</th>
                         </tr>
@@ -44,11 +44,11 @@
                         <?php $no = 1; ?>
                         @foreach ($siswa as $s)
                             <tr>
-                                <td class="text-center">{{ $no++ }}.</td>
-                                <td class="text-center">{{ $s->nama_siswa }}</td>
-                                <td class="text-center">{{ $s->no_induk_siswa }}</td>
-                                <td class="text-center">{{ $s->golongan_siswa }}</td>
-                                <td class="text-center">{{ $s->tlp_siswa }}</td>
+                                <td>{{ $no++ }}.</td>
+                                <td>{{ $s->nama_siswa }}</td>
+                                <td>{{ $s->no_induk_siswa }}</td>
+                                <td>{{ $s->golongan_siswa }}</td>
+                                <td>{{ $s->tlp_siswa }}</td>
                                 <?php if($s->status_aktif_siswa == 1) { ?>
                                 <td class="text-center"><a href="" type="button" class="btn btn-success">Aktif</a></td>
                                 <?php } ?>

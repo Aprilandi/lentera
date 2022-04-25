@@ -12,6 +12,8 @@
     <script src="https://kit.fontawesome.com/2b329cdf00.js" crossorigin="anonymous"></script>
     <link href="/admin/vendors/themify-icons/css/themify-icons.css" rel="stylesheet" />
     <!-- PLUGINS STYLES-->
+    <link href="/admin/vendors/DataTables/datatables.min.css" rel="stylesheet" />
+    <!-- PLUGINS STYLES-->
     <link href="/admin/vendors/jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
     <!-- THEME STYLES-->
     <link href="/admin/css/main.min.css" rel="stylesheet" />
@@ -74,7 +76,17 @@
     <script src="/admin/js/app.min.js" type="text/javascript"></script>
     <!-- PAGE LEVEL SCRIPTS-->
     <script src="/admin/js/scripts/dashboard_1_demo.js" type="text/javascript"></script>
-
+    <!-- PAGE LEVEL PLUGINS-->
+    <script src="/admin/vendors/DataTables/datatables.min.js" type="text/javascript"></script>
+    <!-- PAGE LEVEL SCRIPTS-->
+    <script type="text/javascript">
+        $(function() {
+            $('#example-table').DataTable({
+                pageLength: 10,
+                scrollX: true
+            });
+        })
+    </script>
 </body>
 
 </html>
