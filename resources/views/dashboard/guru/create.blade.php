@@ -86,6 +86,7 @@
                                 Tambah
                                 Data
                                 Guru</button>
+                            <a href="/guru" type="button" class="btn btn-secondary">Kembali</a>
                         </div>
                     </form>
                 </div>

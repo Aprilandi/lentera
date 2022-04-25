@@ -28,7 +28,8 @@
                                 aria-label="Close">×</button><strong>Sukses!</strong> {{ session('success') }}</div>
                     @endif
                 </div>
-                <table class="table table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
+                <table class="table table-bordered table-hover table-responsive-xl" id="example-table" cellspacing="0"
+                    width="100%">
                     <thead>
                         <tr>
                             <th>No</th>

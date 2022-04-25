@@ -140,6 +140,7 @@
                                                 Ubah
                                                 Data
                                                 siswa</button>
+                                            <a href="/siswa" type="button" class="btn btn-secondary">Kembali</a>
                                         </div>
                                     </form>
                                 </div>
